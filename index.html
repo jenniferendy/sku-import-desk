@@ -282,15 +282,20 @@ function effective(r, i){
   return {...r, vendor, brand, sku, productId, fromReg, variant};
 }
 
+function enrichVal(e, outCol){
+  if(!ENRICH || !e.sku) return '';
+  const rec = ENRICH.bySku.get(e.sku);
+  return rec && rec[outCol] ? rec[outCol] : '';
+}
 function missing(e){
   const m = [];
   if(!e.vendor) m.push('vendor');
-  if(!e.brand) m.push('brand');
+  if(!e.brand && !enrichVal(e,'Vendor')) m.push('brand');
   if(!e.sku) m.push(REG ? 'SKU (not in register)' : 'SKU');
-  if(e.cost==='') m.push('cost');
-  if(e.msrp==='') m.push('MSRP');
+  if(e.cost==='' && !enrichVal(e,'Cost per item')) m.push('cost');
+  if(e.msrp==='' && !enrichVal(e,'Price')) m.push('MSRP');
   if(!e.strategy) m.push('fulfil strategy');
-  if(!e.upc) m.push('UPC');
+  if(!e.upc && !enrichVal(e,'Barcode')) m.push('UPC');
   if(!e.l4code && e.l4) m.push('L4 code (no hierarchy match)');
   if(!e.l4) m.push('L4 type');
   return m;
@@ -680,6 +685,7 @@ function handleEnrich(file){
       $('filetag2').style.display='block';
       $('filetag2').textContent = `${file.name} · ${isFulfil?'Fulfil export · ':''}${bySku.size} SKU row(s)`;
       renderMerge();
+      if(ROWS.length) render();
     }catch(ex){ err('Couldn\u2019t read the enrichment file: ' + ex.message); }
   };
   reader.readAsArrayBuffer(file);
