@@ -47,7 +47,7 @@ The merge report shows how many SKUs matched, how many were in the enrichment fi
 |---|---|---|
 | Fulfil import CSV | `fulfil_import_YYYY-MM-DD.csv` | Fulfil product importer |
 | Shopify import CSV | `shopify_import_YYYY-MM-DD.csv` | Shopify admin -> Products -> Import |
-| Matrixify import CSV | `matrixify_import_YYYY-MM-DD.csv` | Matrixify import (base file) |
+| Matrixify import CSV | `matrixify_import_YYYY-MM-DD.csv` | Matrixify import (native format: Handle / Command=MERGE / Variant-level fields; imports as Draft, unpublished) |
 | Tracker rows CSV | `tracker_rows_YYYY-MM-DD.csv` | Paste into the SKU Intake Tracker |
 
 The enrichment panel has its own **"Download enriched Matrixify CSV"** button — identical to the main Matrixify export but with any enrichment file merged in.
@@ -80,7 +80,7 @@ Everything runs **in the browser**. Files are never uploaded to any server — t
 
 - Fulfil importer column order (75 columns)
 - Shopify product CSV column order (57 columns)
-- Matrixify column order (57 columns)
+- Matrixify column order (58 columns, native Matrixify format)
 - BB&B merch hierarchy (line/class -> code + category path)
 
 If Fulfil, Shopify, or Matrixify change their templates, or merch revises the hierarchy, the file must be regenerated from the new source files — then replace `index.html` in this repo and the link stays the same for everyone. After committing, wait for the Pages build (Actions tab) and hard-refresh (Ctrl+Shift+R).
