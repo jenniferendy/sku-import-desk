@@ -1,6 +1,6 @@
 # SKU Import Desk
 
-A drag-and-drop tool that turns the BB&B Master SKU Register into import-ready files for **Shopify** and **Fulfil (FFIO)** — units converted, vendors mapped to their exact Fulfil names, variants grouped, gaps flagged. Add a sourcing assortment file and it also builds a **Purchase Order import**. No spreadsheet formulas, no re-keying.
+A drag-and-drop tool that turns the BB&B Master SKU Register into import-ready files for **Shopify** and **Fulfil (FFIO)** — units converted, vendors mapped to their exact Fulfil names, variants grouped, gaps flagged. Add a sourcing assortment file and it also builds a **Purchase Order import**. No spreadsheet formulas, no re-keying. 
 
 **Live app:** `https://jenniferendy.github.io/sku-import-desk/`
 
